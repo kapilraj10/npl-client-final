@@ -1,5 +1,5 @@
 // Simple API client using fetch. Configure base URL via Vite env.
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000/api';
+const BASE_URL = 'https://npm-backend-8vzj.vercel.app/api';
 
 function getToken() {
   try { return localStorage.getItem('npl_token_v1') || null; } catch { return null; }
