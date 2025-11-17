@@ -160,10 +160,10 @@ function Editor({ match, setMatch, onSave, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4">
-      <div className="w-full max-w-3xl rounded-2xl border border-gray-200 bg-white p-5 text-gray-900 shadow-2xl">
+    <div className="fixed inset-0 z-50 bg-black/40 p-4 overflow-y-auto">
+      <div className="mx-auto my-8 w-full max-w-3xl rounded-2xl border border-gray-200 bg-white p-5 text-gray-900 shadow-2xl max-h-[85vh] overflow-y-auto">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">{match?.id ? "Edit Match" : "New Match"}</h2>
+          <h2 className="text-lg font-semibold">{match?._id ? "Edit Match" : "New Match"}</h2>
           <button onClick={onClose} className="rounded-md border border-gray-300 px-3 py-1 hover:bg-gray-50">Close</button>
         </div>
 
@@ -207,7 +207,7 @@ function Editor({ match, setMatch, onSave, onClose }) {
 function Field({ label, children }) {
   return (
     <label className="block text-sm">
-      <span className="mb-1 block text-gray-300">{label}</span>
+      <span className="mb-1 block text-gray-700">{label}</span>
       {children}
     </label>
   );
@@ -235,7 +235,7 @@ function SetLiveButton({ id, active, onDone }) {
     try {
       const upd = await MatchesAPI.setLive(id);
       onDone && onDone(upd);
-    } catch (e) {
+    } catch {
       alert('Failed to set live');
     } finally {
       setLoading(false);
